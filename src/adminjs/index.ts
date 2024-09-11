@@ -3,6 +3,8 @@ import AdminJSExpress from "@adminjs/express";
 import AdminJSSequelize from "@adminjs/sequelize";
 import { sequelize } from "../database";
 import { adminJsResources } from "./resources";
+import { User } from "../models";
+import bcrypt from "bcrypt";
 
 AdminJS.registerAdapter(AdminJSSequelize);
 
@@ -33,4 +35,27 @@ export const adminJS = new AdminJS({
   },
 });
 
-export const adminJSRouter = AdminJSExpress.buildRouter(adminJS);
+export const adminJSRouter = AdminJSExpress.buildAuthenticatedRouter(
+  adminJS,
+  {
+    authenticate: async (email, password) => {
+      const user = await User.findOne({ where: { email } });
+
+      if (user && user.role === "admin") {
+        const matched = await bcrypt.compare(password, user.password);
+
+        if (matched) {
+          return user;
+        }
+      }
+
+      return false;
+    },
+    cookiePassword: "senha-do-cookie",
+  },
+  null,
+  {
+    resave: false,
+    saveUninitialized: false,
+  }
+);
