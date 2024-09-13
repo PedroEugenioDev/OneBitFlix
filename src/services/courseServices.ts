@@ -33,4 +33,12 @@ export const courseService = {
     );
     return randomFeaturedCourses.slice(0, 3);
   },
+
+  getTenNewest: async () => {
+    const tenNewestCourses = await Course.findAll({
+      limit: 10,
+      order: ["created_at", "createdAt"],
+    });
+    return tenNewestCourses;
+  },
 };
