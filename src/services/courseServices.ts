@@ -55,7 +55,6 @@ export const courseService = {
       limit: perPage,
       offset,
     });
-    console.log({ rows });
     return {
       courses: rows,
       page,
