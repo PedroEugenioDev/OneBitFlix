@@ -3,10 +3,12 @@ import { categoriesController } from "./controllers/categoriesController";
 import { coursesController } from "./controllers/courseController";
 import { episodeController } from "./controllers/episodeController";
 import { authController } from "./controllers/authController";
+import { ensureAuth } from "./middleware/auth";
+
 
 const router = express.Router();
 
-router.get("/categories", categoriesController.index);
+router.get("/categories",ensureAuth, categoriesController.index);
 router.get("/categories/:id", categoriesController.show);
 
 router.get("/courses/featured", coursesController.featured);
