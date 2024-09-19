@@ -4,7 +4,7 @@ import { coursesController } from "./controllers/courseController";
 import { episodeController } from "./controllers/episodeController";
 import { authController } from "./controllers/authController";
 import { ensureAuth, ensureAuthViaQuery } from "./middleware/auth";
-
+import { favoritesController } from "./controllers/favoriteController";
 
 const router = express.Router();
 
@@ -20,5 +20,7 @@ router.get("/courses/search", ensureAuth, coursesController.search);
 router.get("/courses/:id", ensureAuth, coursesController.show);
 
 router.get("/episodes/stream", ensureAuthViaQuery, episodeController.stream);
+
+router.post('/favorites', ensureAuth, favoritesController.save)
 
 export { router };
