@@ -19,7 +19,7 @@ export interface EpisodeInstance
     Episode {}
 
 export const Episode = sequelize.define<EpisodeInstance, Episode>(
-  "Episode",
+  "episode",
   {
     id: {
       allowNull: false,
