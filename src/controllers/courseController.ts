@@ -11,12 +11,9 @@ export const coursesController = {
     const courseId = req.params.id;
     try {
       const course = await courseService.findByIdWithEpisodes(courseId)
-
       if (!course) return res.status(404).json({ message: 'Curso não encontrado' })
-
       const liked = await likeService.isLiked(userId, Number(courseId))
       const favorited = await favoriteService.isFavorited(userId, Number(courseId))
-
       return res.json({ ...course.get(), favorited, liked })
     } catch (err) {
       if (err instanceof Error) {
