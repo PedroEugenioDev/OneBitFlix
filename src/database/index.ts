@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
+import dotenv from "dotenv"
 
-export const sequelize = new Sequelize(
-  "postgres://onebitflix:onebitflix@localhost:5432/onebitflix_development"
-);
+dotenv.config();
+
+export const sequelize = new Sequelize(process.env.DB_URL!)

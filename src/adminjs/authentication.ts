@@ -16,5 +16,5 @@ export const authenticationOptions: AuthenticationOptions = {
 
     return false;
   },
-  cookiePassword: "senha-do-cookie",
+  cookiePassword: process.env.ADMINJS_COOKIE_KEY!,
 };

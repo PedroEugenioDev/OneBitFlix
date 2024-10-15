@@ -3,6 +3,9 @@ import cors from "cors"
 import { sequelize } from "./database";
 import { adminJS, adminJSRouter } from "./adminjs";
 import { router } from "./routes";
+import dotenv from "dotenv"
+
+dotenv.config();
 
 const app = express();
 

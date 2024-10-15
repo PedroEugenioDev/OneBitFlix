@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-const secret = 'chave-jwt'
+const secret =  process.env.JWT_KEY!
 
 export const jwtService = {
   signToken: (payload: string | object | Buffer, expiration: string) => {
