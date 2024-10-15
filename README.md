@@ -6,17 +6,89 @@ Projeto final do curso Programador Full-Stack Javascript Profisional da escola d
 
 ## 📦 Tech Stack
 
-**Tecnologias de back-end:** typescript, Node.js, Express, Admin.js, Sequelize, PostgreSQL, JWT Token.
+**Tecnologias de back-end:** typescript, Node.js, Express, Admin.js, Sequelize, PostgreSQL, JWT Token, Postman.
 
 ## 🔑 Funcionalidades
 
 - Painel de adminstração para regenciamento de recursos
-        - Página de criação de recursos via formulário
-        - Página de visualização de recursos com filtagem de dados
-        - Página de atualização de recursos
-        - Exclusão de recursos
+  - Página de criação de recursos via formulário
+  - Página de visualização de recursos com filtagem de dados
+  - Página de atualização de recursos
+  - Exclusão de recursos
         
 - API para consumo de dados
+
+  **Endpoints**
+
+| Method           | Endpoint         | Response                                              |
+| ------------- | ---------------- | -----------------------------------------------          |
+| POST   | `/auth/register`           | Cadastras usuário no banco de dados                   |
+| POST   | `/auth/login`              | Faz login do usuário                                  |
+| ------------- | ---------------- | -----------------------------------------------          |
+| GET    | `/categories`              | Retorna um array com todas as categorias              |
+| GET    | `/categories/:id`          | Retorna detalhes da categoria e lista de cursos       |
+| ------------- | ---------------- | -----------------------------------------------          |
+| GET    | `/courses/featured`        | Retorna todos os cursos marcados com <em>featured</em>|
+| GET    | `/courses/newest`          | Retorna um array dos 10 cursos mais novos             |
+| GET    | `/courses/popular`         | Retonra uma array com os 10 cursos mais populares     |
+| GET    | `/courses/search`          | Retorna um array de cursos com a palavra-chave no nome|  
+| GET    | `/courses/:id`             | Detorna os detalhes de um curso                       |
+| ------------- | ---------------- | -----------------------------------------------          |
+| GET    | `/episodes/stream`         | Retona um streaming de dados de um episódio           |
+| GET    | `/episodes/:id/watchTime`  | Retona o tempo assistido desse episódio em segundos   |
+| POST   | `/episodes/:id/watchTime`  | Salva no banco de dados o progresso do episódio       |
+| ------------- | ---------------- | -----------------------------------------------          |
+| GET    | `/favorites`               | Retona um array de cursos salvos em <em>favoritos</em>|
+| POST   | `/favorites`               | Salva um cuso na tabela de favoritos                  |
+| DELETE | `/favorites/:id`           | Remove do banco de dados o curso                      |
+| ------------- | ---------------- | -----------------------------------------------          |
+| POST   | `/likes`                   | Salva um curso na tabela de cutidas                   |
+| DELETE | `/likes/:id`               | Remove um curso da tabela de curtidas                 |
+| ------------- | ---------------- | -----------------------------------------------          |
+| GET    | `/users/current`           | Retona os dados do usuário logado                     |
+| PUT    | `/users/current`           | Atualiza no banco de os dados do usuário              |
+| PUT    | `/users/current/password`  | Atualiza no bancoa senha do usuário                   |
+| GET    | `/users/current/watching`  | Retorna um arrya de cursos em andamento               |
+
+  **Exemplo**
+
+Considere a seguinte rota: 
+
+```bash
+ /course/3
+```
+
+A resposta esperada é a seguinte:        
+
+```bash
+{
+    "id": 3,
+    "name": "Micro-serviços com Node.js",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "thumbnailUrl": "thumbnails/course-3/pessoa.png",
+    "episodes": [
+        {
+            "id": 3,
+            "name": "Episodio1",
+            "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet in lacus sit amet elementum. Sed tincidunt leo et ullamcorper aliquam. Maecenas tincidunt dapibus facilisis. Praesent non dapibus ipsum. Aenean mattis id purus ac eleifend. Suspendisse non urna eget mi malesuada cursus eu quis ante. Aliquam est enim, vehicula vel velit vitae, euismod maximus lacus. Fusce sit amet nunc ac.",
+            "order": 1,
+            "videoUrl": "videos/course-3/episode1__10sec.mp4",
+            "secondsLong": 10
+        },
+        {
+            "id": 4,
+            "name": "Episodio2",
+            "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet in lacus sit amet elementum. Sed tincidunt leo et ullamcorper aliquam. Maecenas tincidunt dapibus facilisis. Praesent non dapibus ipsum. Aenean mattis id purus ac eleifend. Suspendisse non urna eget mi malesuada cursus eu quis ante. Aliquam est enim, vehicula vel velit vitae, euismod maximus lacus. Fusce sit amet nunc ac.",
+            "order": 2,
+            "videoUrl": "videos/course-3/episode2_54sec.mp4",
+            "secondsLong": 54
+        }
+    ],
+    "favorited": true,
+    "liked": true
+}
+```
+
 
 ## 💭 Processo
 
@@ -25,7 +97,8 @@ Essa parte do projeto consistiu em elaborar como o sistema funcionaria e como or
 **Preparação do projeto**
 - Levantamento dos requisitos
 - Modelagem dos bancos de dados (tabelas necessários e seus relacionamentos)
-- Criação do projeto, instalação da dependencias de projeto e de desenvolvimento e organização de diretórios
+- Definição dos endpoints da API
+- Inicialização do projeto, instalação da dependencias de projeto e de desenvolvimento e organização de diretórios
 - Configuração do banco de dados postgre usando Sequelize
 
 **Criação do painel admnistrativo**
@@ -51,6 +124,7 @@ Para a criação da API, cada rota criada seguiu o seguinte padrão de desenvolv
 - Criação de um services paaca manipular o model
 - Criação de um métodos no controller para processar a requisição usando o service criado
 - Adição da rota no roteador
+- Teste da rota no Postman
 
 Esse processo foi feito para as seguintes rotas
 - Categorias
@@ -63,13 +137,22 @@ Esse processo foi feito para as seguintes rotas
         
 ## 📚 Aprendizado
 
-- 
+- Este projeto permitir aplicar os conhecimentos de de back-end, como Typescript, Node.js, Express, Sequelize e PostgreSQL, aprendidos ao longo do Curso
+- Além disso, o projeto poermitiu aprender sobre as sequintes tecnologias
+  - Pacote Admin.js
+  - Autenticação e JWT Token
+  - Desenvolvimento de API
+  - bcrypt
+  - Cors
+  - Postman
+  - Criação de services
 
 ## 🚦 Executando o projeto
 
 ```bash
   git clone https://github.com/PedroEugenioDev/onebitflix_back-end.git
   cd /onebitflix_back-end
+  npm install
   npm run dev
 ```
 
